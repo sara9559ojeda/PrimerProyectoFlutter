@@ -12,7 +12,21 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Menú Principal',
-      theme: ThemeData(primarySwatch: Colors.deepPurple),
+      theme: ThemeData(
+        primarySwatch: Colors.green,
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.green, 
+          foregroundColor: Colors.white, 
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.green, 
+            foregroundColor: Colors.white, 
+            padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+            textStyle: const TextStyle(fontSize: 16),
+          ),
+        ),
+      ),
       home: const MenuScreen(),
     );
   }
@@ -34,20 +48,26 @@ class MenuScreen extends StatelessWidget {
                   Navigator.push(context, MaterialPageRoute(builder: (_) => const CounterScreen())),
               child: const Text("Contador"),
             ),
+            const SizedBox(height: 20), 
+
             ElevatedButton(
               onPressed: () =>
                   Navigator.push(context, MaterialPageRoute(builder: (_) => const DynamicListScreen())),
               child: const Text("Lista Dinámica"),
             ),
+            const SizedBox(height: 20),
+
             ElevatedButton(
               onPressed: () =>
                   Navigator.push(context, MaterialPageRoute(builder: (_) => const RowColScreen())),
               child: const Text("Row & Column"),
             ),
+            const SizedBox(height: 20),
+
             ElevatedButton(
               onPressed: () =>
                   Navigator.push(context, MaterialPageRoute(builder: (_) => const CreativeScreen())),
-              child: const Text("Pantalla Creativa"),
+              child: const Text("Pantalla Nueva"),
             ),
           ],
         ),
@@ -55,6 +75,7 @@ class MenuScreen extends StatelessWidget {
     );
   }
 }
+
 
 class CounterScreen extends StatefulWidget {
   const CounterScreen({super.key});
@@ -170,11 +191,11 @@ class RowColScreen extends StatelessWidget {
           const SizedBox(height: 40),
 
           const ListTile(
-            leading: Icon(Icons.home, color: Colors.deepPurple),
+            leading: Icon(Icons.home, color: Colors.green),
             title: Text("Element 1"),
           ),
           const ListTile(
-            leading: Icon(Icons.search, color: Colors.deepPurple),
+            leading: Icon(Icons.search, color: Colors.green),
             title: Text("Element 2"),
           ),
         ],
@@ -212,7 +233,7 @@ class _CreativeScreenState extends State<CreativeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Pantalla Creativa"),
+        title: const Text("Pantalla nueva"),
         leading: BackButton(onPressed: () => Navigator.pop(context)),
       ),
       body: ListView(
@@ -227,7 +248,7 @@ class _CreativeScreenState extends State<CreativeScreen> {
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
               labelText: "Nombre",
-              prefixIcon: Icon(Icons.person),
+              prefixIcon: Icon(Icons.person, color: Colors.green),
             ),
           ),
           const SizedBox(height: 15),
@@ -237,7 +258,7 @@ class _CreativeScreenState extends State<CreativeScreen> {
             decoration: const InputDecoration(
               border: OutlineInputBorder(),
               labelText: "Apellido",
-              prefixIcon: Icon(Icons.badge),
+              prefixIcon: Icon(Icons.badge, color: Colors.green),
             ),
           ),
           const SizedBox(height: 20),
@@ -247,7 +268,7 @@ class _CreativeScreenState extends State<CreativeScreen> {
               final nombre = _nameController.text;
               final apellido = _lastNameController.text;
               ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text("Hola $nombre $apellido mira estos gatitos para alegrar tu dia :'3")),
+                SnackBar(content: Text("Hola $nombre $apellido mira estos gatitos para alegrar tu día :)")),
               );
             },
             child: const Text("Enviar"),
@@ -258,11 +279,11 @@ class _CreativeScreenState extends State<CreativeScreen> {
           const Text("Galería de Imágenes", 
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
           const SizedBox(height: 20),
-          Image.network("https://www.google.com/url?sa=i&url=https%3A%2F%2Fes.wikipedia.org%2Fwiki%2FGato_atigrado&psig=AOvVaw3GQl7W8owy-yQzmiVZm1-w&ust=1755821899375000&source=images&cd=vfe&opi=89978449&ved=0CBUQjRxqFwoTCOC0xbbQmo8DFQAAAAAdAAAAABAf", fit: BoxFit.cover),
+          Image.network("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUSWjnSd77lh-vRDBbCR0LfDCWgAaLHB-0kw&s", fit: BoxFit.cover),
           const SizedBox(height: 10),
-          Image.network("https://www.anicura.es/cdn-cgi/image/f=auto,fit=cover,w=640,h=640,g=auto,sharpen=1/AdaptiveImages/powerinit/52437/_SNI2031.jpg?stamp=a2efc90c9d13cd9fdc0f5f7a2e3b2231238dc8cf", fit: BoxFit.cover),
+          Image.network("https://upload.wikimedia.org/wikipedia/commons/4/4d/Cat_November_2010-1a.jpg", fit: BoxFit.cover),
           const SizedBox(height: 10),
-          Image.network("https://picsum.photos/300/202", fit: BoxFit.cover),
+          Image.network("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQala6Xlg2jirjn2Je0XT3K2rj-fXpGjLZQQ&s", fit: BoxFit.cover),
         ],
       ),
     );
